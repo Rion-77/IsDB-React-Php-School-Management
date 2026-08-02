@@ -1,19 +1,37 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
 
 // Css and Js
-// import './assets/css/app.css'
-// import './assets/css/app-dark.css'
-// import './assets/css/iconly.css'
-import './assets/compiled/css/app.css'
-import './assets/compiled/css/app-dark.css'
-import './assets/compiled/css/iconly.css'
+import "./assets/compiled/css/app.css";
+import "./assets/compiled/css/app-dark.css";
+import "./assets/compiled/css/iconly.css";
 
+// Routes
+import App from "./App.tsx";
+import Dashboard from "./views/pages/Dashboard.tsx";
+import Page404 from "./views/pages/Page404.tsx";
 
-import App from './App.tsx'
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Dashboard />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <Page404/>,
+  },
+]);
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />,
   </StrictMode>,
-)
+);
