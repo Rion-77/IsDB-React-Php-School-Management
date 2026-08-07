@@ -6,6 +6,8 @@ import { RouterProvider } from "react-router/dom";
 import "./assets/compiled/css/app.css";
 import "./assets/compiled/css/app-dark.css";
 import "./assets/compiled/css/iconly.css";
+import "./assets/css/custom.css";
+
 
 import { routes } from "./Routes";
 

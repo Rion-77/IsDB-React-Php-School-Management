@@ -1,10 +1,12 @@
 export interface FormInputProps {
   label: string;
-  name: string;
+  formHook: any;
+  errorMessage: any;
   type?: string;
   placeholder?: string;
-  value: string | number | undefined;
-  onChange: any;
   icon: string;
+  // name: string;
+  // value: string | number | undefined;
+  // onChange: any;
   children?: any;
 }

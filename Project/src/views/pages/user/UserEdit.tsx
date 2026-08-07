@@ -1,130 +1,101 @@
-import { useState } from "react";
 import BackButton from "../../../components/Button/BackButton";
 import PageHeading from "../../../components/PageHeading";
-import { type User, defaultUserData } from "../../../interfaces/User";
-import InputField from "../../../components/FormInput/InputField";
-import SelectField from "../../../components/FormInput/SelectField";
+import InputField from "../../../components/Form/InputField";
+import SelectField from "../../../components/Form/SelectField";
 import SubmitButton from "../../../components/Button/SubmitButton";
 import ResetButton from "../../../components/Button/ResetButton";
-import { useParams } from "react-router";
+import SelectOption from "../../../components/Form/SelectOption";
+//inteface
+import { userSchema, type UserSchema } from "../../../interfaces/User";
+// React hook form with Zod
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import FormElement from "../../../components/Form/FormElement";
+import FormButtonParent from "../../../components/Form/FormButtonParent";
+import PageWrapper from "../../layout/PageWrapper";
 
-const UserEdit = () => {
-  const [userFormData, setUserFormData] = useState<User>(defaultUserData);
-  const { userId } = useParams();
+const UserCreate = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(userSchema),
+  });
 
-  // onChange event handler function
-  const handleUserFormChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const fieldName = e.target.name as keyof User;
-
-    setUserFormData((prev) => {
-      if (typeof defaultUserData[fieldName] === "number") {
-        return {
-          ...prev,
-          [fieldName]: Number(e.target.value),
-        };
-      }
-      return {
-        ...prev,
-        [fieldName]: e.target.value,
-      };
-    });
+  const formDataHandler: SubmitHandler<UserSchema> = (data) => {
+    console.log(data);
   };
 
   return (
     <>
-      <div className="page-heading">
+      <PageWrapper>
         <PageHeading title="Edit User" subtitle="Edit an existing user">
           <BackButton to="/user" text="Back to User List" />
         </PageHeading>
-        {userId}
-        <section id="basic-vertical-layouts">
-          <div className="row match-height">
-            <div className="col-12">
-              <div className="card">
-                <div className="card-content">
-                  <div className="card-body">
-                    <form className="form form-vertical">
-                      <div className="form-body">
-                        <div className="row">
 
-                          {/* Test */}
+        <FormElement onSubmit={handleSubmit(formDataHandler)}>
+          {/* Full Name */}
+          <InputField
+            formHook={{ ...register("name") }}
+            placeholder="Full Name"
+            label="Full Name"
+            icon="bi bi-person"
+            type="text"
+            errorMessage={errors}
+          />
 
-                          <div>{JSON.stringify(userFormData)}</div>
+          {/* Mobile */}
+          <InputField
+            formHook={{ ...register("phone") }}
+            label="Phone"
+            type="text"
+            placeholder="Phone"
+            icon="bi bi-telephone"
+            errorMessage={errors}
+          />
 
-                          {/* Full Name */}
-                          <InputField
-                            label="Full Name"
-                            name="name"
-                            type="text"
-                            placeholder="Full Name"
-                            value={userFormData.name}
-                            onChange={handleUserFormChange}
-                            icon="bi bi-person"
-                          />
-                          {/* Mobile */}
-                          <InputField
-                            label="Phone"
-                            name="phone"
-                            type="text"
-                            placeholder="Phone"
-                            value={userFormData.phone}
-                            onChange={handleUserFormChange}
-                            icon="bi bi-telephone"
-                          />
+          {/* Email */}
+          <InputField
+            formHook={{ ...register("email") }}
+            label="Email"
+            type="email"
+            placeholder="Email"
+            icon="bi bi-envelope"
+            errorMessage={errors}
+          />
 
-                          {/* Email */}
-                          <InputField
-                            label="Email"
-                            name="email"
-                            type="email"
-                            placeholder="Email"
-                            value={userFormData.email}
-                            onChange={handleUserFormChange}
-                            icon="bi bi-envelope"
-                          />
+          {/* Password */}
+          <InputField
+            formHook={{ ...register("password") }}
+            label="Password"
+            type="password"
+            placeholder="password"
+            icon="bi bi-lock"
+            errorMessage={errors}
+          />
 
-                          {/* Password */}
-                          <InputField
-                            label="Password"
-                            name="password"
-                            type="password"
-                            placeholder="password"
-                            value={userFormData.password}
-                            onChange={handleUserFormChange}
-                            icon="bi bi-lock"
-                          />
+          {/* Role */}
+          <SelectField
+            formHook={{ ...register("role_id") }}
+            label="Role"
+            icon="bi bi-person-badge"
+            errorMessage={errors}
+          >
+            <SelectOption text="Select a Role" disabled={true} selected={true} />
+            <SelectOption value={1} text="Admin" />
+            <SelectOption value={2} text="Moderator" />
+          </SelectField>
 
-                          {/* Role */}
-                          <SelectField
-                            label="Role"
-                            name="role_id"
-                            value={userFormData.role_id}
-                            onChange={handleUserFormChange}
-                            icon="bi bi-person-badge"
-                          >
-                            <option value={0} disabled>Select a Role</option>
-                            <option value={1}>Admin</option>
-                            <option value={2}>Moderator</option>
-                          </SelectField>
-                          
-
-                          {/* Buttons */}
-                          <div className="col-12 d-flex justify-content-end">
-                            <SubmitButton/>
-                            <ResetButton/>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+          {/* Buttons */}
+          <FormButtonParent>
+            <SubmitButton />
+            <ResetButton />
+          </FormButtonParent>
+        </FormElement>
+      </PageWrapper>
     </>
   );
 };
 
-export default UserEdit;
+export default UserCreate;
