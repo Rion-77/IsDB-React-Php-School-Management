@@ -36,7 +36,17 @@ import SubjectEdit from "./views/pages/subject/SubjectEdit.tsx";
 import GroupCreate from "./views/pages/group/GroupCreate.tsx";
 import GroupManage from "./views/pages/group/GroupManage.tsx";
 import GroupEdit from "./views/pages/group/GroupEdit.tsx";
+// Exam
+import ExamManage from "./views/pages/exam/ExamManage.tsx";
+import ExamCreate from "./views/pages/exam/ExamManage.tsx";
+import ExamEdit from "./views/pages/exam/ExamManage.tsx";
+// Exam Type
+import ExamTypeManage from "./views/pages/exam-type/ExamTypeManage.tsx";
+import ExamTypeCreate from "./views/pages/exam-type/ExamTypeCreate.tsx";
+import ExamTypeEdit from "./views/pages/exam-type/ExamTypeEdit.tsx";
 
+
+  
 export const routes = createBrowserRouter([
   {
     path: "/",
@@ -76,6 +86,14 @@ export const routes = createBrowserRouter([
       {path: "/group",element: <GroupManage />,},
       {path: "/group/create",element: <GroupCreate />,},
       {path: "/group/edit/:groupId",element: <GroupEdit />,},
+      // Exam
+      {path: "/exam",element: <ExamManage />,},
+      {path: "/exam/create",element: <ExamCreate />,},
+      {path: "/exam/edit/:examId",element: <ExamEdit />,},
+      // Exam Type
+      {path: "/exam-type",element: <ExamTypeManage />,},
+      {path: "/exam-type/create",element: <ExamTypeCreate />,},
+      {path: "/exam-type/edit/:examTypeId",element: <ExamTypeEdit />,},
     ],
   },
   {

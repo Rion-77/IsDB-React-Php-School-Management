@@ -87,6 +87,10 @@ const Sidebar = () => {
             <SidebarLink to="/group" icon="bi bi-people" text="Groups" />
             <SidebarLink to="/subject" icon="bi bi-book" text="Subjects" />
 
+            <li className="sidebar-title">Exam Management</li>
+            <SidebarLink to="/exam" icon="bi bi-journal-text" text="Examination" />
+            <SidebarLink to="/exam-type" icon="bi bi-list-stars" text="Exam Types" />
+
             <li className="sidebar-title">User Management</li>
 
             <SidebarLink to="/user" icon="bi bi-person-fill-gear" text="Users" />

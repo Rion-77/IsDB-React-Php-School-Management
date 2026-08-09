@@ -61,6 +61,8 @@ function setTheme(theme, persist = false) {
 // });
 window.addEventListener("click", (e) => {
   const toggler = e.target.closest("#toggle-dark");
+  // const toggler = e.target.closest("#sidebar").querySelector("#toggle-dark");
+  console.log(toggler);
 
   if (!toggler) return;
 
