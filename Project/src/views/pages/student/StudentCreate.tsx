@@ -111,6 +111,19 @@ const StudentCreate = () => {
             <SelectOption value={2} text="Section B" />
           </SelectField>
 
+          {/* Group */}
+          <SelectField
+            formHook={{ ...register("group_id") }}
+            label="Group:"
+            icon="bi bi-people"
+            errorMessage={errors}
+          >
+            <SelectOption text="Select a Group" disabled={true} selected={true} />
+            <SelectOption value={1} text="Science" />
+            <SelectOption value={2} text="Commerce" />
+            <SelectOption value={2} text="Arts" />
+          </SelectField>
+
           {/* Photo */}
           <InputField
             formHook={{ ...register("photo") }}

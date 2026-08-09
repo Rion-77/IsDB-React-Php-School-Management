@@ -32,6 +32,10 @@ import SectionEdit from "./views/pages/section/SectionEdit.tsx";
 import SubjectManage from "./views/pages/subject/SubjectManage.tsx";
 import SubjectCreate from "./views/pages/subject/SubjectCreate.tsx";
 import SubjectEdit from "./views/pages/subject/SubjectEdit.tsx";
+// Group
+import GroupCreate from "./views/pages/group/GroupCreate.tsx";
+import GroupManage from "./views/pages/group/GroupManage.tsx";
+import GroupEdit from "./views/pages/group/GroupEdit.tsx";
 
 export const routes = createBrowserRouter([
   {
@@ -64,10 +68,14 @@ export const routes = createBrowserRouter([
       {path: "/section",element: <SectionManage />,},
       {path: "/section/create",element: <SectionCreate />,},
       {path: "/section/edit/:sectionId",element: <SectionEdit />,},
-      // Section
+      // Subject
       {path: "/subject",element: <SubjectManage />,},
       {path: "/subject/create",element: <SubjectCreate />,},
       {path: "/subject/edit/:subjectId",element: <SubjectEdit />,},
+      // Group
+      {path: "/group",element: <GroupManage />,},
+      {path: "/group/create",element: <GroupCreate />,},
+      {path: "/group/edit/:groupId",element: <GroupEdit />,},
     ],
   },
   {

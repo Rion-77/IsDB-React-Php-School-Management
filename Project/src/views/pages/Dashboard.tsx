@@ -4,6 +4,7 @@ const Dashboard = () => {
     return(
         <>
          <PageHeading title="Profile Statistics"/>
+         
           <div className="page-content">
             <section className="row">
               <div className="col-12 col-lg-9">
@@ -206,7 +207,7 @@ const Dashboard = () => {
                                 <td className="col-3">
                                   <div className="d-flex align-items-center">
                                     <div className="avatar avatar-md">
-                                      <img src="./assets/compiled/jpg/5.jpg" />
+                                      <img src="https://api.dicebear.com/10.x/initial-face/svg" />
                                     </div>
                                     <p className="font-bold ms-3 mb-0">Si Cantik</p>
                                   </div>
@@ -219,7 +220,7 @@ const Dashboard = () => {
                                 <td className="col-3">
                                   <div className="d-flex align-items-center">
                                     <div className="avatar avatar-md">
-                                      <img src="./assets/compiled/jpg/2.jpg" />
+                                      <img src="https://api.dicebear.com/10.x/initial-face/svg" />
                                     </div>
                                     <p className="font-bold ms-3 mb-0">Si Ganteng</p>
                                   </div>
@@ -234,7 +235,7 @@ const Dashboard = () => {
                                 <td className="col-3">
                                   <div className="d-flex align-items-center">
                                     <div className="avatar avatar-md">
-                                      <img src="./assets/compiled/jpg/8.jpg" />
+                                      <img src="https://api.dicebear.com/10.x/initial-face/svg" />
                                     </div>
                                     <p className="font-bold ms-3 mb-0">Singh Eknoor</p>
                                   </div>
@@ -247,7 +248,7 @@ const Dashboard = () => {
                                 <td className="col-3">
                                   <div className="d-flex align-items-center">
                                     <div className="avatar avatar-md">
-                                      <img src="./assets/compiled/jpg/3.jpg" />
+                                      <img src="https://api.dicebear.com/10.x/initial-face/svg" />
                                     </div>
                                     <p className="font-bold ms-3 mb-0">Rani Jhadav</p>
                                   </div>
@@ -271,7 +272,7 @@ const Dashboard = () => {
                   <div className="card-body py-4 px-4">
                     <div className="d-flex align-items-center">
                       <div className="avatar avatar-xl">
-                        <img src="./assets/compiled/jpg/1.jpg" alt="Face 1" />
+                        <img src="https://api.dicebear.com/10.x/initial-face/svg" alt="Face 1" />
                       </div>
                       <div className="ms-3 name">
                         <h5 className="font-bold">John Duck</h5>
@@ -287,7 +288,7 @@ const Dashboard = () => {
                   <div className="card-content pb-4">
                     <div className="recent-message d-flex px-4 py-3">
                       <div className="avatar avatar-lg">
-                        <img src="./assets/compiled/jpg/4.jpg" />
+                        <img src="https://api.dicebear.com/10.x/initial-face/svg" />
                       </div>
                       <div className="name ms-4">
                         <h5 className="mb-1">Hank Schrader</h5>
@@ -296,7 +297,7 @@ const Dashboard = () => {
                     </div>
                     <div className="recent-message d-flex px-4 py-3">
                       <div className="avatar avatar-lg">
-                        <img src="./assets/compiled/jpg/5.jpg" />
+                        <img src="https://api.dicebear.com/10.x/initial-face/svg" />
                       </div>
                       <div className="name ms-4">
                         <h5 className="mb-1">Dean Winchester</h5>
@@ -305,7 +306,7 @@ const Dashboard = () => {
                     </div>
                     <div className="recent-message d-flex px-4 py-3">
                       <div className="avatar avatar-lg">
-                        <img src="./assets/compiled/jpg/1.jpg" />
+                        <img src="https://api.dicebear.com/10.x/initial-face/svg" />
                       </div>
                       <div className="name ms-4">
                         <h5 className="mb-1">John Dodol</h5>

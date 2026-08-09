@@ -7,6 +7,9 @@ import "./assets/compiled/css/app.css";
 import "./assets/compiled/css/app-dark.css";
 import "./assets/compiled/css/iconly.css";
 import "./assets/css/custom.css";
+// Js
+import "./assets/static/js/components/dark.js";
+
 
 
 import { routes } from "./Routes";

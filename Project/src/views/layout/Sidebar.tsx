@@ -79,11 +79,12 @@ const Sidebar = () => {
 
             <li className="sidebar-title">Academy Management</li>
             <SidebarLink to="/student" icon="bi bi-person-bounding-box" text="Students" />
-            <SidebarLink to="/teacher" icon="bi bi-person-video3" text="Teachers" />
+            <SidebarLink to="/teacher" icon="bi bi-person-workspace" text="Teachers" />
 
             <li className="sidebar-title">Academic Setup</li>
-            <SidebarLink to="/class" icon="bi bi-people" text="Classes" />
+            <SidebarLink to="/class" icon="bi bi-person-video3" text="Classes" />
             <SidebarLink to="/section" icon="bi bi-person-lines-fill" text="Sections" />
+            <SidebarLink to="/group" icon="bi bi-people" text="Groups" />
             <SidebarLink to="/subject" icon="bi bi-book" text="Subjects" />
 
             <li className="sidebar-title">User Management</li>

@@ -20,6 +20,7 @@ export const studentSchema = z.object({
     .regex(/^(?:\+[1-9]\d{1,14}|0[1-9]\d{7,14})$/, "Invalid phone number"),
   class_id: z.coerce.number("Class is not selected"),
   section_id: z.coerce.number("Section is not selected"),
+  group_id: z.coerce.number().optional(),
   photo: z.preprocess(
     (val) => (val instanceof FileList ? val[0] : val),
     z
