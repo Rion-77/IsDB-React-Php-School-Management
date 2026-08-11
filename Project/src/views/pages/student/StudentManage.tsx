@@ -23,28 +23,23 @@ const StudentManage = () => {
             section_id int
             photo varchar
           */}
-          <ManageTableHead
-            heads={[
-              "PHOTO",
-              "NAME",
-              "FATHER'S NAME",
-              "MOTHER'S NAME",
-              "ADDRESS",
-              "PHONE NO.",
-              "CLASS",
-              "SECTION",
-              "ACTION",
-            ]}
-          />
+          <ManageTableHead heads={["PHOTO", "NAME", "ADDRESS", "PHONE NO.", "CLASS", "SECTION", "ACTION"]} />
           <tbody>
             {/* Row 1 */}
             <tr>
               <td>
-                <img src="https://i.pravatar.cc/150" alt="Student" className="rounded-circle" width="40" height="40" />
+                <img
+                  src="https://i.pravatar.cc/150?img=4"
+                  alt="Student"
+                  className="rounded-circle"
+                  width="40"
+                  height="40"
+                />
               </td>
-              <td className="align-middle fw-bold">Rahat Khan</td>
-              <td className="align-middle">Anwar Khan</td>
-              <td className="align-middle">Asma Khan</td>
+              <td className="align-middle fw-bold">
+                <Link to="/student/details/1">Rahat Khan</Link>
+              </td>
+
               <td className="align-middle">Mirpur, Dhaka</td>
               <td className="align-middle">01711223344</td>
               <td className="align-middle">Class 6</td>
@@ -62,11 +57,18 @@ const StudentManage = () => {
             {/* Row 2 */}
             <tr>
               <td>
-                <img src="https://i.pravatar.cc/151" alt="Student" className="rounded-circle" width="40" height="40" />
+                <img
+                  src="https://i.pravatar.cc/150?img=12"
+                  alt="Student"
+                  className="rounded-circle"
+                  width="40"
+                  height="40"
+                />
               </td>
-              <td className="align-middle fw-bold">Ayesha Siddiqua</td>
-              <td className="align-middle">Kamrul Islam</td>
-              <td className="align-middle">Nazma Islam</td>
+              <td className="align-middle fw-bold">
+                <Link to="/student/details/1">Arafat Hossain</Link>
+              </td>
+
               <td className="align-middle">Uttara, Dhaka</td>
               <td className="align-middle">01822334455</td>
               <td className="align-middle">Class 7</td>
@@ -84,11 +86,17 @@ const StudentManage = () => {
             {/* Row 3 */}
             <tr>
               <td>
-                <img src="https://i.pravatar.cc/152" alt="Student" className="rounded-circle" width="40" height="40" />
+                <img
+                  src="https://i.pravatar.cc/150?img=2"
+                  alt="Student"
+                  className="rounded-circle"
+                  width="40"
+                  height="40"
+                />
               </td>
-              <td className="align-middle fw-bold">Tanvir Ahmed</td>
-              <td className="align-middle">Rafiq Ahmed</td>
-              <td className="align-middle">Sultana Ahmed</td>
+              <td className="align-middle fw-bold">
+                <Link to="/student/details/1">Tanvir Ahmed </Link>
+              </td>
               <td className="align-middle">Dhanmondi, Dhaka</td>
               <td className="align-middle">01933445566</td>
               <td className="align-middle">Class 6</td>

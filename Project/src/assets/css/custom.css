@@ -1,3 +1,10 @@
 input[type= file]::file-selector-button {
   display: none;
 }   
+
+
+/* dashboard icon fix */
+.stats-icon .bi {
+    width: auto !important;
+    height: auto !important;
+}

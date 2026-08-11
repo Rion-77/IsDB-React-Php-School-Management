@@ -13,7 +13,8 @@ const THEME_KEY = "theme";
  * @param {"dark"|"light"} theme
  * @param {boolean} persist
  */
-function setTheme(theme, persist = false) {
+
+/* function setTheme(theme, persist = false) {
   document.body.classList.add(theme);
   document.documentElement.setAttribute("data-bs-theme", theme);
 
@@ -21,10 +22,11 @@ function setTheme(theme, persist = false) {
     localStorage.setItem(THEME_KEY, theme);
   }
 }
-
+ */
 /**
  * Init theme from setTheme()
  */
+
 /* function initTheme() {
   //If the user manually set a theme, we'll load that
   const storedTheme = localStorage.getItem(THEME_KEY)
@@ -61,10 +63,11 @@ function setTheme(theme, persist = false) {
 // });
 window.addEventListener("click", (e) => {
   const toggler = e.target.closest("#toggle-dark");
-  // const toggler = e.target.closest("#sidebar").querySelector("#toggle-dark");
-  console.log(toggler);
+  const togglerParent = document.querySelector("#sidebar");
 
   if (!toggler) return;
+  if(!(togglerParent.contains(toggler))) return;
+
 
   // Selects html tag and gets attribute
   const htmlTag = document.documentElement;

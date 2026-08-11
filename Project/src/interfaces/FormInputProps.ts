@@ -5,8 +5,6 @@ export interface FormInputProps {
   type?: string;
   placeholder?: string;
   icon: string;
-  // name: string;
-  // value: string | number | undefined;
-  // onChange: any;
+  min?: number | string | undefined
   children?: any;
 }

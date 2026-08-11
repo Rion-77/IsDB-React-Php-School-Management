@@ -9,13 +9,16 @@ import "./assets/compiled/css/iconly.css";
 import "./assets/css/custom.css";
 // Js
 import "./assets/static/js/components/dark.js";
-
-
+/* 
+<!-- <script defer src="assets/static/js/components/dark.js"></script>  -->
+    <!--<script defer src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script defer src="assets/compiled/js/app.js"></script> -->
+*/
 
 import { routes } from "./Routes";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={routes} />,
+    <RouterProvider router={routes} />
   </StrictMode>,
 );

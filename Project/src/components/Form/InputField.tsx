@@ -1,6 +1,6 @@
 import type { FormInputProps } from "../../interfaces/FormInputProps";
 
-const InputField = ({label, formHook, errorMessage ,type,placeholder, icon}: FormInputProps ) => {
+const InputField = ({label, formHook, errorMessage ,type,placeholder, icon, min}: FormInputProps ) => {
   return (
     <>
       <div className="col-md-4">
@@ -15,6 +15,7 @@ const InputField = ({label, formHook, errorMessage ,type,placeholder, icon}: For
               type={type}
               className="form-control"
               placeholder={placeholder}
+              min={min}
             />
             <div className="form-control-icon">
               <i className={icon}></i>

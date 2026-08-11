@@ -6,7 +6,7 @@ import SubmitButton from "../../../components/Button/SubmitButton";
 import ResetButton from "../../../components/Button/ResetButton";
 import SelectOption from "../../../components/Form/SelectOption";
 //inteface
-import { userSchema, type UserSchema } from "../../../interfaces/User";
+import { examSchema, type ExamSchema } from "../../../interfaces/Exam";
 // React hook form with Zod
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,78 +14,60 @@ import FormElement from "../../../components/Form/FormElement";
 import FormButtonParent from "../../../components/Form/FormButtonParent";
 import PageWrapper from "../../layout/PageWrapper";
 
-const UserCreate = () => {
+const ExamEdit = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(userSchema),
+    resolver: zodResolver(examSchema),
   });
 
-  const formDataHandler: SubmitHandler<UserSchema> = (data) => {
+  const formDataHandler: SubmitHandler<ExamSchema> = (data) => {
     console.log(data);
   };
 
   return (
     <>
       <PageWrapper>
-        <PageHeading title="Create User" subtitle="Multiple form layouts, you can use.">
-          <BackButton to="/user" text="Back to User List" />
+        <PageHeading title="Edit Examination" subtitle="Edit an existing examination in your school.">
+          <BackButton to="/exam" text="Back to Examination List" />
         </PageHeading>
 
         <FormElement onSubmit={handleSubmit(formDataHandler)}>
-          {/* Full Name */}
+          {/* Exam Name */}
           <InputField
-            formHook={{ ...register("name") }}
-            placeholder="Full Name"
-            label="Full Name"
-            icon="bi bi-person"
+            formHook={{ ...register("exam_name") }}
+            placeholder="Exam Name"
+            label="Exam Name"
+            icon="bi bi-journal-text"
             type="text"
             errorMessage={errors}
           />
 
-          {/* Mobile */}
-          <InputField
-            formHook={{ ...register("phone") }}
-            label="Phone"
-            type="text"
-            placeholder="Phone"
-            icon="bi bi-telephone"
-            errorMessage={errors}
-          />
-
-          {/* Email */}
-          <InputField
-            formHook={{ ...register("email") }}
-            label="Email"
-            type="email"
-            placeholder="Email"
-            icon="bi bi-envelope"
-            errorMessage={errors}
-          />
-
-          {/* Password */}
-          <InputField
-            formHook={{ ...register("password") }}
-            label="Password"
-            type="password"
-            placeholder="password"
-            icon="bi bi-lock"
-            errorMessage={errors}
-          />
-
-          {/* Role */}
+          {/* Exam Type */}
           <SelectField
-            formHook={{ ...register("role_id") }}
-            label="Role"
-            icon="bi bi-person-badge"
+            formHook={{ ...register("exam_type_id") }}
+            label="Exam Type"
+            icon="bi bi-list-stars"
             errorMessage={errors}
           >
-            <SelectOption text="Select a Role" disabled={true} selected={true} />
-            <SelectOption value={1} text="Admin" />
-            <SelectOption value={2} text="Moderator" />
+            <SelectOption text="Select an Exam Type" disabled={true} selected={true} />
+            <SelectOption value={1} text="Monthly Exam" />
+            <SelectOption value={2} text="Mid-Term Exam" />
+            <SelectOption value={3} text="Final Exam" />
           </SelectField>
+
+          {/* Exam Start Date */}
+          <InputField
+            formHook={{ ...register("exam_start_date") }}
+            placeholder="Exam Start Date"
+            label="Exam Start Date"
+            icon="bi bi-calendar"
+            type="date"
+            min= {new Date().toISOString().split("T")[0]}
+            errorMessage={errors}
+          />
 
           {/* Buttons */}
           <FormButtonParent>
@@ -98,4 +80,4 @@ const UserCreate = () => {
   );
 };
 
-export default UserCreate;
+export default ExamEdit;

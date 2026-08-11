@@ -33,9 +33,9 @@ const TeacherManage = () => {
             {/* Row 1 */}
             <tr>
               <td>
-                <img src="https://i.pravatar.cc/150" alt="Teacher" className="rounded-circle" width="40" height="40" />
+                <img src="https://i.pravatar.cc/150?img=13" alt="Teacher" className="rounded-circle" width="40" height="40" />
               </td>
-              <td className="align-middle fw-bold">Rahat Khan</td>
+              <td className="align-middle fw-bold">Nasir Hossan</td>
               <td className="align-middle">Assistant Teacher</td>
               <td className="align-middle">Mirpur, Dhaka</td>
               <td className="align-middle">01711223344</td>
@@ -54,9 +54,9 @@ const TeacherManage = () => {
             {/* Row 2 */}
             <tr>
               <td>
-                <img src="https://i.pravatar.cc/151" alt="Teacher" className="rounded-circle" width="40" height="40" />
+                <img src="https://i.pravatar.cc/150?img=17" alt="Teacher" className="rounded-circle" width="40" height="40" />
               </td>
-              <td className="align-middle fw-bold">Ayesha Siddiqua</td>
+              <td className="align-middle fw-bold">Sumon Ahmed</td>
               <td className="align-middle">Lecturer</td>
               <td className="align-middle">Uttara, Dhaka</td>
               <td className="align-middle">01822334455</td>
@@ -75,9 +75,9 @@ const TeacherManage = () => {
             {/* Row 3 */}
             <tr>
               <td>
-                <img src="https://i.pravatar.cc/152" alt="Teacher" className="rounded-circle" width="40" height="40" />
+                <img src="https://i.pravatar.cc/150?img=60" alt="Teacher" className="rounded-circle" width="40" height="40" />
               </td>
-              <td className="align-middle fw-bold">Tanvir Ahmed</td>
+              <td className="align-middle fw-bold">Gias Uddin</td>
               <td className="align-middle">Senior Teacher</td>
               <td className="align-middle">Dhanmondi, Dhaka</td>
               <td className="align-middle">01933445566</td>

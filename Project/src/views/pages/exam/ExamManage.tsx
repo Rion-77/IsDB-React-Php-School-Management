@@ -26,7 +26,7 @@ const ExamManage = () => {
           />
           <tbody>
             <tr>
-              <td className="text-bold-500">Monthly-January</td>
+              <td className="text-bold-500"><Link to="/exam/view/1">Monthly-January</Link></td>
               <td>Monthly Exam</td>
               <td>2026-01-01</td>
               <td>

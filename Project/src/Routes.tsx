@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router";
 import App from "./App.tsx";
 import Dashboard from "./views/pages/Dashboard.tsx";
 import Page404 from "./views/pages/Page404.tsx";
+import Login from "./views/pages/Login.tsx";
 // User
 import UserCreate from "./views/pages/user/UserCreate.tsx";
 import UserManage from "./views/pages/user/UserManage.tsx";
@@ -38,16 +39,26 @@ import GroupManage from "./views/pages/group/GroupManage.tsx";
 import GroupEdit from "./views/pages/group/GroupEdit.tsx";
 // Exam
 import ExamManage from "./views/pages/exam/ExamManage.tsx";
-import ExamCreate from "./views/pages/exam/ExamManage.tsx";
-import ExamEdit from "./views/pages/exam/ExamManage.tsx";
+import ExamCreate from "./views/pages/exam/ExamCreate.tsx";
+import ExamEdit from "./views/pages/exam/ExamEdit.tsx";
 // Exam Type
 import ExamTypeManage from "./views/pages/exam-type/ExamTypeManage.tsx";
 import ExamTypeCreate from "./views/pages/exam-type/ExamTypeCreate.tsx";
 import ExamTypeEdit from "./views/pages/exam-type/ExamTypeEdit.tsx";
+// Fee
+import FeeHistory from "./views/pages/fee/FeeHistoy.tsx";
+import FeeCollection from "./views/pages/fee/FeeCollection.tsx";
+// Fee Type
+import FeeTypeManage from "./views/pages/fee-type/FeeTypeManage.tsx";
+import FeeTypeCreate from "./views/pages/fee-type/FeeTypeCreate.tsx";
+import FeeTypeEdit from "./views/pages/fee-type/FeeTypeEdit.tsx";
+import StudentDetails from "./views/pages/student/StudentDetails.tsx";
 
-
-  
 export const routes = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+  },
   {
     path: "/",
     element: <App />,
@@ -66,6 +77,7 @@ export const routes = createBrowserRouter([
       {path: "/student",element: <StudentManage />,},
       {path: "/student/create",element: <StudentCreate />,},
       {path: "/student/edit/:studentId",element: <StudentEdit />,},
+      {path: "/student/details/:studentId",element: <StudentDetails />,},
        // Teacher
       {path: "/teacher",element: <TeacherManage />,},
       {path: "/teacher/create",element: <TeacherCreate />,},
@@ -94,6 +106,13 @@ export const routes = createBrowserRouter([
       {path: "/exam-type",element: <ExamTypeManage />,},
       {path: "/exam-type/create",element: <ExamTypeCreate />,},
       {path: "/exam-type/edit/:examTypeId",element: <ExamTypeEdit />,},
+      // Fee
+      {path: "/fee-history",element: <FeeHistory />,},
+      {path: "/fee-collection",element: <FeeCollection />,},
+      // Fee Type
+      {path: "/fee-type",element: <FeeTypeManage />,},
+      {path: "/fee-type/create",element: <FeeTypeCreate />,},
+      {path: "/fee-type/edit/:feeTypeId",element: <FeeTypeEdit />,},
     ],
   },
   {
