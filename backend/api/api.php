@@ -1,6 +1,13 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+header("Access-Control-Allow-Headers: Content-Type");
+
+// Handle browser preflight request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
 
 
 require_once "../config/db.php";
@@ -18,10 +25,19 @@ if ($_GET['endpoint']) {
 
     if ($endpoint == "students" && $method == "GET") {
         getStudents();
-    } elseif ($endpoint == "user-create" && $method == "POST") {
+    } elseif ($endpoint == "student-create" && $method == "POST") {
+        $data = json_decode(file_get_contents("php://input"), true);
+        // print_r($data);
+        addNew($data);
     } elseif ($endpoint == "user-update" && $method == "PUT") {
     } elseif ($endpoint == "user-delete" && $method == "DELETE") {
-    } elseif ($endpoint == "user-details" && $method == "GET") {
+    } elseif ($endpoint == "student-details" && $method == "GET") {
+        $id = $_GET["id"];
+        getStudentById($id);
+    } elseif ($endpoint == "teacher-create" && $method == "POST") {
+        $data = json_decode(file_get_contents("php://input"), true);
+        print_r($data);
+        // addNew($data);
     } else {
         http_response_code(404);
     }

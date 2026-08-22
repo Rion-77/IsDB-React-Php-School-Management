@@ -10,12 +10,17 @@ import SelectField from "../../../components/Form/SelectField";
 import SelectOption from "../../../components/Form/SelectOption";
 //inteface
 import { studentSchema, type StudentSchema } from "../../../interfaces/Student";
+import { api } from "../../../config";
 // React hook form with Zod
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TextareaField from "../../../components/Form/TextareaField";
+import { useNavigate } from "react-router";
 
 const StudentCreate = () => {
+
+  const redirection = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -26,6 +31,10 @@ const StudentCreate = () => {
 
   const formDataHandler: SubmitHandler<StudentSchema> = (data) => {
     console.log(data);
+    api.post("student-create", data).then((res) => {
+      console.log(res);
+      redirection("/student");
+    });
   };
 
   return (
@@ -91,7 +100,11 @@ const StudentCreate = () => {
             icon="bi bi-book"
             errorMessage={errors}
           >
-            <SelectOption text="Select a class" disabled={true} selected={true} />
+            <SelectOption
+              text="Select a class"
+              disabled={true}
+              selected={true}
+            />
             <SelectOption value={1} text="Class 1" />
             <SelectOption value={2} text="Class 2" />
             <SelectOption value={3} text="Class 3" />
@@ -106,7 +119,11 @@ const StudentCreate = () => {
             icon="bi bi-person-lines-fill"
             errorMessage={errors}
           >
-            <SelectOption text="Select a Section" disabled={true} selected={true} />
+            <SelectOption
+              text="Select a Section"
+              disabled={true}
+              selected={true}
+            />
             <SelectOption value={1} text="Section A" />
             <SelectOption value={2} text="Section B" />
           </SelectField>
@@ -118,7 +135,11 @@ const StudentCreate = () => {
             icon="bi bi-people"
             errorMessage={errors}
           >
-            <SelectOption text="Select a Group" disabled={true} selected={true} />
+            <SelectOption
+              text="Select a Group"
+              disabled={true}
+              selected={true}
+            />
             <SelectOption value={1} text="Science" />
             <SelectOption value={2} text="Commerce" />
             <SelectOption value={2} text="Arts" />
@@ -133,7 +154,6 @@ const StudentCreate = () => {
             icon="bi bi-person-bounding-box"
             errorMessage={errors}
           />
-
 
           {/* Buttons */}
           <FormButtonParent>

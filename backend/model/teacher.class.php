@@ -1,36 +1,32 @@
 <?php
-class Student{
+class Teacher{
     public $id;
     public $name;
-    public $father_name;
-    public $mother_name;
+    public $designation;
     public $address;
     public $phone;
-    public $class_id;
-    public $section_id;
-    public $group_id;
+    public $qualification;
+    public $subject_id;
     public $photo;
 
      /*
     `id`, `name`, `father_name`, `mother_name`, `address`, `phone`, `class_id`, `section_id`, `group_id`, `photo`
     */
 
-    public function __construct($id, $name, $father_name, $mother_name, $address, $phone, $class_id, $section_id, $group_id, $photo){
+    public function __construct($id, $name, $designation, $address, $phone, $qualification, $subject_id, $photo){
         $this->id = $id;
         $this->name = $name;
-        $this->father_name = $father_name;
-        $this->mother_name = $mother_name;
+        $this->designation = $designation;
         $this->address = $address;
         $this->phone = $phone;
-        $this->class_id = $class_id;
-        $this->section_id = $section_id;
-        $this->group_id = $group_id;
+        $this->qualification = $qualification;
+        $this->subject_id = $subject_id;
         $this->photo = $photo;
     }
 
     public static function getAll(){
         global $db;
-        $query = "SELECT * FROM students
+        $query = "SELECT * FROM teachers
         order by id desc";
         $result = $db->query($query);
         return $result->fetch_all(MYSQLI_ASSOC);
@@ -38,7 +34,7 @@ class Student{
 
      public static function getById($id){
         global $db;
-        $query = "SELECT * FROM students WHERE id = $id";
+        $query = "SELECT * FROM teachers WHERE id = $id";
         $result = $db->query($query);
         return $result->fetch_assoc();
     }
@@ -46,7 +42,7 @@ class Student{
    
     public function create(){
         global $db;
-        $query = "INSERT INTO `students` (`name`, `father_name`, `mother_name`, `address`, `phone`, `class_id`, `section_id`, `group_id`, `photo`) VALUES ('$this->name', '$this->father_name', '$this->mother_name', '$this->address', '$this->phone', $this->class_id, $this->section_id, $this->group_id, '$this->photo')";
+        $query = "INSERT INTO `teachers` (`name`, `designation`, `address`, `phone`, `qualification`, `subject_id`, `photo`) VALUES ('$this->name', '$this->designation', '$this->address', '$this->phone', '$this->qualification', $this->subject_id, '$this->photo')";
         $result = $db->query($query);
         if($result){
             return $db->insert_id;

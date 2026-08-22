@@ -1,7 +1,12 @@
 import z from "zod";
 
 export const studentSchema = z.object({
-  name: z.string().trim().min(1, "Name is required").min(4, "Name must be at least 4 characters long"),
+  id: z.coerce.number().optional(),
+  name: z
+    .string()
+    .trim()
+    .min(1, "Name is required")
+    .min(4, "Name must be at least 4 characters long"),
   father_name: z
     .string()
     .trim()
@@ -27,17 +32,32 @@ export const studentSchema = z.object({
       .file({ message: "Upload Image" })
       .min(1)
       .max(1024 * 1024)
-      .mime([
-        "image/jpeg",
-        "image/png",
-        "image/webp",
-        "image/gif",
-        "image/svg+xml",
-        "image/avif",
-        "image/bmp",
-        "image/tiff",
-      ], "Invalid file type. Select an image").optional(),
+      .mime(
+        [
+          "image/jpeg",
+          "image/png",
+          "image/webp",
+          "image/gif",
+          "image/svg+xml",
+          "image/avif",
+          "image/bmp",
+          "image/tiff",
+        ],
+        "Invalid file type. Select an image",
+      )
+      .optional(),
   ),
 });
 
 export type StudentSchema = z.infer<typeof studentSchema>;
+
+export const defaultStudent: StudentSchema = {
+  id: 0,
+  name: "",
+  father_name: "",
+  mother_name: "",
+  address: "",
+  phone: "",
+  class_id: 0,
+  section_id: 0,
+};

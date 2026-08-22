@@ -1,12 +1,33 @@
 import BackButton from "../../../components/Button/BackButton";
 import PageWrapper from "../../layout/PageWrapper";
 import PageHeading from "../../../components/PageHeading";
-
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import {
+  type StudentSchema,
+  defaultStudent,
+} from "../../../interfaces/Student";
+import { api } from "../../../config";
 
 const StudentDetails = () => {
-  // const API_URL = import.meta.env.VITE_API_URL;
+  const { studentId } = useParams();
+  const [student, setStudent] = useState<StudentSchema>(defaultStudent);
 
-  
+  const getStudent = () => {
+    api
+      .get(`student-details?id=${studentId}`)
+      .then((res) => {
+        console.log(res);
+        setStudent(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getStudent();
+  }, []);
 
   return (
     <PageWrapper>
@@ -20,11 +41,14 @@ const StudentDetails = () => {
               <div className="card-body">
                 <div className="d-flex justify-content-center align-items-center flex-column">
                   <div className="avatar avatar-2xl">
-                    <img src="https://i.pravatar.cc/150?img=4" alt="Avatar" />
+                    <img
+                      src={`https://i.pravatar.cc/150?img=${student.id}`}
+                      alt="Avatar"
+                    />
                   </div>
 
-                  <h3 className="mt-3">John Doe</h3>
-                  <p className="text-small">Junior Software Engineer</p>
+                  <h3 className="mt-3">{student.name}</h3>
+                  <p className="text-small">{student.class_id}</p>
                 </div>
               </div>
             </div>
