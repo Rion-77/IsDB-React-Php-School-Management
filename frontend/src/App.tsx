@@ -2,6 +2,9 @@ import { Outlet } from "react-router";
 import Sidebar from "./views/layout/Sidebar";
 
 function App() {
+
+  
+
   return (
     <>
       <div id="app">

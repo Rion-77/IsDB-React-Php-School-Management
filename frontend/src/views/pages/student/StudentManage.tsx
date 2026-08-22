@@ -4,8 +4,32 @@ import AddButton from "../../../components/Button/AddButton";
 import PageWrapper from "../../layout/PageWrapper";
 import ManageTable from "../../../components/Table/ManageTable";
 import ManageTableHead from "../../../components/Table/ManageTableHead";
+import axios from "axios";
+import { useEffect } from "react";
 
 const StudentManage = () => {
+  const getStudents = () => {
+    axios
+      .get(`http://localhost/react-php-school-managemet-isdb/backend/api/students`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  /* const getStudents = () => {
+    axios.get(`${API_URL}/api/students`).then((res) => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    });
+  }; */
+
+  useEffect(() => {
+    getStudents();
+  }, []);
+
   return (
     <>
       <PageWrapper>

@@ -2,7 +2,12 @@ import BackButton from "../../../components/Button/BackButton";
 import PageWrapper from "../../layout/PageWrapper";
 import PageHeading from "../../../components/PageHeading";
 
+
 const StudentDetails = () => {
+  // const API_URL = import.meta.env.VITE_API_URL;
+
+  
+
   return (
     <PageWrapper>
       <PageHeading title="Student Pofile" subtitle="Manage Students">
