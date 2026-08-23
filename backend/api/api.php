@@ -35,8 +35,9 @@ if ($_GET['endpoint']) {
         $id = $_GET["id"];
         getStudentById($id);
     } elseif ($endpoint == "teacher-create" && $method == "POST") {
-        $data = json_decode(file_get_contents("php://input"), true);
-        print_r($data);
+        // $data = json_decode(file_get_contents("php://input"), true);
+        print_r($_POST);
+        print_r($_FILES);
         // addNew($data);
     } else {
         http_response_code(404);
