@@ -9,26 +9,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-
+// Database connection
 require_once "../config/db.php";
-
-
+// Image upload helper
+require_once "../helpers/img-upload-helper.php";
+// All models and api files
 foreach (glob("*-api.php") as $apifile) {
     require_once $apifile;
 }
 
-require_once "../model/student.class.php";
+foreach (glob("../model/*.class.php") as $modalfile) {
+    require_once $modalfile;
+}
 
+// Endpoints
 if ($_GET['endpoint']) {
     $endpoint = $_GET['endpoint'];
     $method = $_SERVER['REQUEST_METHOD'];
 
+    // Student API's
     if ($endpoint == "students" && $method == "GET") {
         getStudents();
     } elseif ($endpoint == "student-create" && $method == "POST") {
-        $data = json_decode(file_get_contents("php://input"), true);
+        // $data = json_decode(file_get_contents("php://input"), true);
         // print_r($data);
-        addNew($data);
+        // addNew($data);
+        print_r($_POST);
+        print_r($_FILES);
+        addNewStudent($_POST, $_FILES);
     } elseif ($endpoint == "user-update" && $method == "PUT") {
     } elseif ($endpoint == "user-delete" && $method == "DELETE") {
     } elseif ($endpoint == "student-details" && $method == "GET") {

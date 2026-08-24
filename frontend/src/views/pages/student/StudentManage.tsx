@@ -6,6 +6,9 @@ import ManageTable from "../../../components/Table/ManageTable";
 import ManageTableHead from "../../../components/Table/ManageTableHead";
 import { useEffect, useState } from "react";
 
+// Backend Path
+import { basePath } from "../../../config";
+
 import {
   type StudentSchema,
   defaultStudent,
@@ -56,7 +59,8 @@ const StudentManage = () => {
               <tr>
                 <td>
                   <img
-                    src={`https://i.pravatar.cc/150?img=${student.id}`}
+                    // src={`https://i.pravatar.cc/150?img=${student.id}`}
+                    src={`${basePath}${student.photo}`}
                     alt="Student"
                     className="rounded-circle"
                     width="40"

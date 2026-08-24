@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import BackButton from "../../../components/Button/BackButton";
 import PageHeading from "../../../components/PageHeading";
 import InputField from "../../../components/Form/InputField";
@@ -8,20 +10,49 @@ import FormButtonParent from "../../../components/Form/FormButtonParent";
 import PageWrapper from "../../layout/PageWrapper";
 import SelectField from "../../../components/Form/SelectField";
 import SelectOption from "../../../components/Form/SelectOption";
+import TextareaField from "../../../components/Form/TextareaField";
 //inteface
-import { studentSchema, type StudentSchema } from "../../../interfaces/Student";
+import { studentSchema, type StudentSchema, defaultStudent } from "../../../interfaces/Student";
 // React hook form with Zod
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import TextareaField from "../../../components/Form/TextareaField";
+
+import { api } from "../../../config";
 
 const StudentEdit = () => {
+
+  // Select the student id to edit
+  const { studentId } = useParams();
+  const [student, setStudent] = useState<StudentSchema>(defaultStudent);
+
+
+  // Get student data by api
+  const getStudent = () => {
+      api
+        .get(`student-details?id=${studentId}`)
+        .then((res) => {
+          console.log(res);
+          setStudent(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+  
+    useEffect(() => {
+      getStudent();
+    }, []);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(studentSchema),
+    defaultValues: {
+      ...student,
+      name: student.name,
+    }
   });
 
   const formDataHandler: SubmitHandler<StudentSchema> = (data) => {
