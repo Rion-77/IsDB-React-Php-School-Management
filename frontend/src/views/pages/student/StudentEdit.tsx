@@ -12,7 +12,11 @@ import SelectField from "../../../components/Form/SelectField";
 import SelectOption from "../../../components/Form/SelectOption";
 import TextareaField from "../../../components/Form/TextareaField";
 //inteface
-import { studentSchema, type StudentSchema, defaultStudent } from "../../../interfaces/Student";
+import {
+  studentSchema,
+  type StudentSchema,
+  defaultStudent,
+} from "../../../interfaces/Student";
 // React hook form with Zod
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,41 +24,46 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../../config";
 
 const StudentEdit = () => {
-
   // Select the student id to edit
   const { studentId } = useParams();
   const [student, setStudent] = useState<StudentSchema>(defaultStudent);
 
-
-  // Get student data by api
-  const getStudent = () => {
-      api
-        .get(`student-details?id=${studentId}`)
-        .then((res) => {
-          console.log(res);
-          setStudent(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-  
-    useEffect(() => {
-      getStudent();
-    }, []);
-
+  // React hook form with Zod
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(studentSchema),
     defaultValues: {
-      ...student,
-      name: student.name,
-    }
+      ...defaultStudent,
+    },
   });
 
+  // Get student data by api
+  const getStudent = () => {
+    api
+      .get(`student-details?id=${studentId}`)
+      .then((res) => {
+        // console.log(res);
+        setStudent(res.data);
+
+        reset({
+          ...res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getStudent();
+    console.log(student);
+  }, []);
+
+  // Form data handler
   const formDataHandler: SubmitHandler<StudentSchema> = (data) => {
     console.log(data);
   };
@@ -65,6 +74,8 @@ const StudentEdit = () => {
         <PageHeading title="Edit Student" subtitle="Edit Student Information">
           <BackButton to="/student" text="Back to Student List" />
         </PageHeading>
+
+        <div>{student.name}</div>
 
         <FormElement onSubmit={handleSubmit(formDataHandler)}>
           {/* Full Name */}
@@ -122,7 +133,11 @@ const StudentEdit = () => {
             icon="bi bi-book"
             errorMessage={errors}
           >
-            <SelectOption text="Select a class" disabled={true} selected={true} />
+            <SelectOption
+              text="Select a class"
+              disabled={true}
+              selected={true}
+            />
             <SelectOption value={1} text="Class 1" />
             <SelectOption value={2} text="Class 2" />
             <SelectOption value={3} text="Class 3" />
@@ -137,7 +152,11 @@ const StudentEdit = () => {
             icon="bi bi-person-lines-fill"
             errorMessage={errors}
           >
-            <SelectOption text="Select a Section" disabled={true} selected={true} />
+            <SelectOption
+              text="Select a Section"
+              disabled={true}
+              selected={true}
+            />
             <SelectOption value={1} text="Section A" />
             <SelectOption value={2} text="Section B" />
           </SelectField>
@@ -149,7 +168,11 @@ const StudentEdit = () => {
             icon="bi bi-people"
             errorMessage={errors}
           >
-            <SelectOption text="Select a Group" disabled={true} selected={true} />
+            <SelectOption
+              text="Select a Group"
+              disabled={true}
+              selected={true}
+            />
             <SelectOption value={1} text="Science" />
             <SelectOption value={2} text="Commerce" />
             <SelectOption value={2} text="Arts" />
@@ -164,7 +187,6 @@ const StudentEdit = () => {
             icon="bi bi-person-bounding-box"
             errorMessage={errors}
           />
-
 
           {/* Buttons */}
           <FormButtonParent>

@@ -78,7 +78,7 @@ const StudentManage = () => {
                 <td className="align-middle">Class 6</td>
                 <td className="align-middle">A</td>
                 <td className="align-middle p-0">
-                  <Link to="/student/edit/1" className="btn icon btn-primary">
+                  <Link to={`/student/edit/${student.id}`} className="btn icon btn-primary">
                     <i className="bi bi-pencil-square"></i>
                   </Link>
                   <button type="button" className="btn icon btn-danger ms-2">
