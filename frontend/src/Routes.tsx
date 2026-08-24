@@ -25,6 +25,7 @@ import TeacherEdit from "./views/pages/teacher/TeacherEdit.tsx";
 import ClassCreate from "./views/pages/class/ClassCreate.tsx";
 import ClassManage from "./views/pages/class/ClassManage.tsx";
 import ClassEdit from "./views/pages/class/ClassEdit.tsx";
+import ClassDetails from "./views/pages/class/ClassDetails.tsx";
 // Section
 import SectionManage from "./views/pages/section/SectionManage.tsx";
 import SectionCreate from "./views/pages/section/SectionCreate.tsx";
@@ -53,6 +54,7 @@ import FeeTypeManage from "./views/pages/fee-type/FeeTypeManage.tsx";
 import FeeTypeCreate from "./views/pages/fee-type/FeeTypeCreate.tsx";
 import FeeTypeEdit from "./views/pages/fee-type/FeeTypeEdit.tsx";
 import StudentDetails from "./views/pages/student/StudentDetails.tsx";
+
 
 export const routes = createBrowserRouter([
   {
@@ -86,6 +88,7 @@ export const routes = createBrowserRouter([
       {path: "/class",element: <ClassManage />,},
       {path: "/class/create",element: <ClassCreate />,},
       {path: "/class/edit/:classId",element: <ClassEdit />,},
+      {path: "/class/details/:classId",element: <ClassDetails />,},
        // Section
       {path: "/section",element: <SectionManage />,},
       {path: "/section/create",element: <SectionCreate />,},

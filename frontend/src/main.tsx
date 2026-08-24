@@ -9,6 +9,8 @@ import "./assets/compiled/css/iconly.css";
 import "./assets/css/custom.css";
 // Js
 import "./assets/static/js/components/dark.js";
+import "./assets/compiled/js/app.js";
+import "./assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js";  
 /* 
 <!-- <script defer src="assets/static/js/components/dark.js"></script>  -->
     <!--<script defer src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>

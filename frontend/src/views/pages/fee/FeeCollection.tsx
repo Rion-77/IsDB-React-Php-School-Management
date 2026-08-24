@@ -1,8 +1,47 @@
+import { useEffect, useState } from "react";
 import PageWrapper from "../../layout/PageWrapper";
 import PageHeading from "../../../components/PageHeading";
 import BackButton from "../../../components/Button/BackButton";
+// interfaces
+import { type StudentSchema, defaultStudent } from "../../../interfaces/Student";
+import { defaultFeeType, type FeeTypeSchema } from "../../../interfaces/FeeType";
+import { api } from "../../../config";
 
 const FeeCollection = () => {
+  const [students, setStudents] = useState<StudentSchema[]>([defaultStudent]);
+  const [feeTypes, setFeeTypes] = useState<FeeTypeSchema[]>([defaultFeeType]);
+
+  // Get all students from database
+  const getStudents = () => {
+    api
+      .get(`students`)
+      .then((res) => {
+        console.log(res.data);
+        setStudents(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // Get all classes from database
+  const getFeeTypes = () => {
+    api
+      .get("fee-types")
+      .then((res) => {
+        // console.log(res.data);
+        setFeeTypes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getFeeTypes();
+    getStudents();
+  }, []);
+
   return (
     <PageWrapper>
       <PageHeading title="Collect New Fee" subtitle="Collect a New Fee">
@@ -15,22 +54,32 @@ const FeeCollection = () => {
               <label htmlFor="studentSelect">Student</label>
               <select name="student_id" className="form-select" required>
                 <option value="">Select Student</option>
-                <option value="10">মিম আক্তার</option>
-                <option value="9">আরিফুল ইসলাম</option>
-                <option value="8">নুসরাত জাহান</option>
-                <option value="7">রিদয় আহমেদ</option>
-                <option value="6">সুমাইয়া আক্তার</option>
-                <option value="5">নাঈম ইসলাম</option>
-                <option value="4">মারিয়া ইসলাম</option>
-                <option value="3">মেহেদী হাসান</option>
-                <option value="2">তানজিলা আক্তার</option>
-                <option value="1">রাহাত হাসান</option>
+                {students.map((student) => (
+                  <option key={student.id} value={student.id}>
+                    {student.name}
+                  </option>
+                ))}
               </select>
             </div>
 
             <hr />
 
             <h6>Fee Types</h6>
+           
+           {feeTypes.map((feeType) => (
+              <div className="form-check mb-2" key={feeType.id}>
+                <input
+                  className="form-check-input fee-checkbox"
+                  type="checkbox"
+                  data-amount={feeType.fee_amount}
+                  name="fee_type_id[]"
+                  value={feeType.id}
+                />
+                <label className="form-check-label">
+                  {feeType.fee_type_name} ({feeType.fee_amount} Tk)
+                </label>
+              </div>
+            ))}
 
             <div className="form-check mb-2">
               <input
@@ -43,71 +92,7 @@ const FeeCollection = () => {
               <label className="form-check-label">Admission Fee (5000.00 Tk)</label>
             </div>
 
-            <div className="form-check mb-2">
-              <input
-                className="form-check-input fee-checkbox"
-                type="checkbox"
-                data-amount="800.00"
-                name="fee_type_id[]"
-                value="5"
-              />
-              <label className="form-check-label">Computer Lab Fee (800.00 Tk)</label>
-            </div>
-
-            <div className="form-check mb-2">
-              <input
-                className="form-check-input fee-checkbox"
-                type="checkbox"
-                data-amount="1200.00"
-                name="fee_type_id[]"
-                value="7"
-              />
-              <label className="form-check-label">Development Fee (1200.00 Tk)</label>
-            </div>
-
-            <div className="form-check mb-2">
-              <input
-                className="form-check-input fee-checkbox"
-                type="checkbox"
-                data-amount="1000.00"
-                name="fee_type_id[]"
-                value="3"
-              />
-              <label className="form-check-label">Exam Fee (1000.00 Tk)</label>
-            </div>
-
-            <div className="form-check mb-2">
-              <input
-                className="form-check-input fee-checkbox"
-                type="checkbox"
-                data-amount="500.00"
-                name="fee_type_id[]"
-                value="4"
-              />
-              <label className="form-check-label">Library Fee (500.00 Tk)</label>
-            </div>
-
-            <div className="form-check mb-2">
-              <input
-                className="form-check-input fee-checkbox"
-                type="checkbox"
-                data-amount="1500.00"
-                name="fee_type_id[]"
-                value="2"
-              />
-              <label className="form-check-label">Monthly Tuition (1500.00 Tk)</label>
-            </div>
-
-            <div className="form-check mb-2">
-              <input
-                className="form-check-input fee-checkbox"
-                type="checkbox"
-                data-amount="300.00"
-                name="fee_type_id[]"
-                value="6"
-              />
-              <label className="form-check-label">Sports Fee (300.00 Tk)</label>
-            </div>
+            
 
             <hr />
 

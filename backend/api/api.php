@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 require_once "../config/db.php";
 // Image upload helper
 require_once "../helpers/img-upload-helper.php";
-// All models and api files
+// All models 
 foreach (glob("*-api.php") as $apifile) {
     require_once $apifile;
 }
-
+// All API's
 foreach (glob("../model/*.class.php") as $modalfile) {
     require_once $modalfile;
 }
@@ -47,6 +47,36 @@ if ($_GET['endpoint']) {
         print_r($_POST);
         print_r($_FILES);
         // addNew($data);
+    }
+    // Class
+    elseif ($endpoint == "classes" && $method == "GET") {
+        getClasses();
+    } elseif ($endpoint == "class" && $method == "GET") {
+        getClassById($_GET['id']);
+    } elseif ($endpoint == "class-create" && $method == "POST") {
+        $data = json_decode(file_get_contents("php://input"), true);
+        addNewClass($data);
+    } elseif ($endpoint == "class-update" && $method == "PUT") {
+        $data = json_decode(file_get_contents("php://input"), true);
+        updateClass($data);
+    } elseif ($endpoint == "class-delete" && $method == "DELETE") {
+        $id = $_GET['id'];
+        deleteClass($id);
+    }
+    // Fee Type
+    elseif ($endpoint == "fee-types" && $method == "GET") {
+        getFeeType();
+    } elseif ($endpoint == "fee-type" && $method == "GET") {
+        getFeeTypeById($_GET['id']);
+    } elseif ($endpoint == "fee-type-create" && $method == "POST") {
+        $data = json_decode(file_get_contents("php://input"), true);
+        addNewFeeType($data);
+    } elseif ($endpoint == "fee-type-update" && $method == "PUT") {
+        $data = json_decode(file_get_contents("php://input"), true);
+        updateFeeType($data);
+    } elseif ($endpoint == "fee-type-delete" && $method == "DELETE") {
+        $id = $_GET['id'];
+        deleteFeeType($id);
     } else {
         http_response_code(404);
     }

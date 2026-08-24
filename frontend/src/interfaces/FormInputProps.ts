@@ -1,10 +1,10 @@
 export interface FormInputProps {
-  label: string;
+  label?: string;
   formHook: any;
-  errorMessage: any;
+  errorMessage?: any;
   type?: string;
   placeholder?: string;
-  icon: string;
+  icon?: string;
   min?: number | string | undefined
   children?: any;
 }

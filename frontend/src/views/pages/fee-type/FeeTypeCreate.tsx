@@ -11,18 +11,42 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import FormElement from "../../../components/Form/FormElement";
 import FormButtonParent from "../../../components/Form/FormButtonParent";
 import PageWrapper from "../../layout/PageWrapper";
+import { useState } from "react";
+import { api } from "../../../config";
+import ActionAlert from "../../../components/ActionAlert";
 
 const FeeTypeCreate = () => {
+  // Error and success messaage handler
+  const [msg, setMsg] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(feeTypeSchema),
   });
 
   const formDataHandler: SubmitHandler<FeeTypeSchema> = (data) => {
     console.log(data);
+    api
+      .post("fee-type-create", data)
+      .then((res) => {
+        if (res.status == 200 || res.status == 201) {
+          setMsg(true);
+          setSuccess(true);
+          reset({
+            fee_type_name: "",
+            fee_amount: "",
+          });
+        }
+      })
+      .catch(() => {
+        setMsg(true);
+        setSuccess(false);
+      });
   };
 
   return (
@@ -31,6 +55,10 @@ const FeeTypeCreate = () => {
         <PageHeading title="Add Fee Type" subtitle="Add a new fee type with amount">
           <BackButton to="/fee-type" text="Back to Fee Type List" />
         </PageHeading>
+
+        {msg && (
+          <ActionAlert success={success} successText="New fee type added successfully" onClick={() => setMsg(false)} />
+        )}
 
         <FormElement onSubmit={handleSubmit(formDataHandler)}>
           {/* Fee Type Name */}
