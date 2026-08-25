@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2026 at 04:22 AM
+-- Generation Time: Aug 25, 2026 at 04:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,8 +39,11 @@ CREATE TABLE `classes` (
 INSERT INTO `classes` (`id`, `class_name`) VALUES
 (1, 'Class 9'),
 (2, 'Class 10'),
-(3, 'Class 11'),
-(4, 'Class 12');
+(5, 'Class 2'),
+(6, 'Class 1'),
+(15, 'Class 3'),
+(16, ''),
+(17, '');
 
 -- --------------------------------------------------------
 
@@ -159,7 +162,7 @@ INSERT INTO `fee_types` (`id`, `fee_type_name`, `fee_amount`) VALUES
 (1, 'Monthly Tuition Fee', 1500),
 (2, 'Admission Fee', 5000),
 (3, 'Exam Fee', 800),
-(4, 'Library Fee', 300);
+(4, 'Library Fee', 3000);
 
 -- --------------------------------------------------------
 
@@ -253,7 +256,10 @@ INSERT INTO `students` (`id`, `name`, `father_name`, `mother_name`, `address`, `
 (2, 'Fatima Akter', 'Abdul Ali', 'Rina Begum', 'Apartment 4B, South St', '01811000002', 1, 1, 1, 'fatima.jpg'),
 (3, 'Sajid Hasan', 'Kamrul Hasan', 'Nasima Akter', 'Villa 9, Park Road', '01811000003', 1, 2, 2, 'sajid.jpg'),
 (4, 'Nusrat Jahan', 'Rafiqul Islam', 'Farhana Islam', 'Flat 201, Green View', '01811000004', 2, 3, 1, 'nusrat.jpg'),
-(5, 'Arafat Rahman', 'Habibur Rahman', 'Shirin Akter', 'House 55, Lake Drive', '01811000005', 2, 4, 3, 'arafat.jpg');
+(5, 'Arafat Rahman', 'Habibur Rahman', 'Shirin Akter', 'House 55, Lake Drive', '01811000005', 2, 4, 3, 'arafat.jpg'),
+(6, 'Berk Castaneda', 'Octavia Wood', 'Pascale Hester', 'Quod quae voluptatem', '+13287937234', 1, 1, 1, ''),
+(7, 'Akash', 'Sagor', 'Nodi', 'Prithibi', '01681258769', 1, 1, 1, 'uploads/students/20260823-165847.jpg'),
+(8, 'Quinn Boone', 'Bree Rodgers', 'Randall Church', 'Unde dolor laboris u', '+14141985189', 1, 2, 1, 'uploads/students/20260823-191359.jpg');
 
 -- --------------------------------------------------------
 
@@ -419,7 +425,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `exams`
@@ -449,7 +455,7 @@ ALTER TABLE `fees`
 -- AUTO_INCREMENT for table `fee_types`
 --
 ALTER TABLE `fee_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `groups`
@@ -473,7 +479,7 @@ ALTER TABLE `sections`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `subjects`

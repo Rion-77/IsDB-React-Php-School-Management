@@ -6,10 +6,12 @@ import BackButton from "../../../components/Button/BackButton";
 import { type StudentSchema, defaultStudent } from "../../../interfaces/Student";
 import { defaultFeeType, type FeeTypeSchema } from "../../../interfaces/FeeType";
 import { api } from "../../../config";
+import { defaultFee, type FeeSchema } from "../../../interfaces/Fee";
 
 const FeeCollection = () => {
   const [students, setStudents] = useState<StudentSchema[]>([defaultStudent]);
   const [feeTypes, setFeeTypes] = useState<FeeTypeSchema[]>([defaultFeeType]);
+  const [fee, setFee] = useState<FeeSchema>(defaultFee);
 
   // Get all students from database
   const getStudents = () => {
@@ -42,6 +44,10 @@ const FeeCollection = () => {
     getStudents();
   }, []);
 
+  useEffect(() => {
+    console.log(fee);
+  }, [fee]);
+
   return (
     <PageWrapper>
       <PageHeading title="Collect New Fee" subtitle="Collect a New Fee">
@@ -52,7 +58,17 @@ const FeeCollection = () => {
           <form method="post">
             <div className="mb-3">
               <label htmlFor="studentSelect">Student</label>
-              <select name="student_id" className="form-select" required>
+              <select
+                name="student_id"
+                className="form-select"
+                required
+                onChange={(e) => {
+                  setFee({
+                    ...fee,
+                    student_id: Number(e.target.value),
+                  });
+                }}
+              >
                 <option value="">Select Student</option>
                 {students.map((student) => (
                   <option key={student.id} value={student.id}>
@@ -65,8 +81,8 @@ const FeeCollection = () => {
             <hr />
 
             <h6>Fee Types</h6>
-           
-           {feeTypes.map((feeType) => (
+
+            {feeTypes.map((feeType) => (
               <div className="form-check mb-2" key={feeType.id}>
                 <input
                   className="form-check-input fee-checkbox"
@@ -91,8 +107,6 @@ const FeeCollection = () => {
               />
               <label className="form-check-label">Admission Fee (5000.00 Tk)</label>
             </div>
-
-            
 
             <hr />
 
