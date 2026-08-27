@@ -12,7 +12,7 @@ const FeeTypeManage = () => {
   const [feeTypes, setFeeTypes] = useState<FeeTypeSchema[]>([defaultFeeType]);
   const [deleteItem, setDeleteItem] = useState({ id: 0, name: "" });
 
-  // Get all classes from database
+  // Get all fee types from database
   const getFeeTypes = () => {
     api
       .get("fee-types")

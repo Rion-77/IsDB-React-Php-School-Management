@@ -1,14 +1,38 @@
+import { useEffect, useState } from "react";
 import PageHeading from "../../../components/PageHeading";
 import ManageTable from "../../../components/Table/ManageTable";
 import ManageTableHead from "../../../components/Table/ManageTableHead";
 import PageWrapper from "../../layout/PageWrapper";
 import { useMemo } from "react";
+// interfaces
+import { api } from "../../../config";
 
+import { defaultFee, type FeeSchema } from "../../../interfaces/Fee";
 // Receipt start
 import { useReceiptPrint, type Order, type PrintOptions } from "react-receipts";
+
 // Receipt End
 
 const FeeHistory = () => {
+  const [fees, setFees] = useState<FeeSchema[]>([defaultFee]);
+
+  // Get all fees from database
+  const getFees = () => {
+    api
+      .get("fees")
+      .then((res) => {
+        console.log(res.data);
+        setFees(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getFees();
+  }, []);
+
   // Receipt start
 
   // interface Fee extends Order {
@@ -76,7 +100,7 @@ const FeeHistory = () => {
   const printOptions = useMemo(
     () =>
       ({
-        layout: 2, // Layout 2: Detailed POS w/ Custom Fields
+        layout: 4, // Layout 2: Detailed POS w/ Custom Fields
         alignment: "center",
         primaryColor: "#2563EB",
         textColor: "#000000",
@@ -97,148 +121,34 @@ const FeeHistory = () => {
   return (
     <>
       <PageWrapper>
-        <PageHeading title="Collected Fee History" subtitle="See all collected fees"></PageHeading>
+        <PageHeading
+          title="Collected Fee History"
+          subtitle="See all collected fees"
+        ></PageHeading>
 
         <ManageTable>
-          <ManageTableHead heads={["STUDENT NAME", "AMOUNT", "DATE", "Receipt"]} />
+          <ManageTableHead
+            heads={["STUDENT NAME", "FEE TYPE", "AMOUNT", "DATE", "Receipt"]}
+          />
           <tbody>
-            <tr>
-              <td className="text-bold-500">নুসরাত জাহান</td>
-              <td>5000.00</td>
-              <td>2026-08-08</td>
-              <td>
-               {/* Receipt start */}
-                <button
-                  onClick={printReceipt}
-                  disabled={!currentOrder.items.length}
-                  type="button"
-                  className="btn btn-info"
-                >
-                  View
-                </button>
-                {/* Receipt end */}
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">নুসরাত জাহান</td>
-              <td>5500.00</td>
-              <td>2026-06-27</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">মারিয়া ইসলাম</td>
-              <td>6000.00</td>
-              <td>2026-06-26</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">মিম আক্তার</td>
-              <td>1500.00</td>
-              <td>2026-01-10</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">আরিফুল ইসলাম</td>
-              <td>3800.00</td>
-              <td>2026-01-10</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">নুসরাত জাহান</td>
-              <td>3000.00</td>
-              <td>2026-01-10</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">রিদয় আহমেদ</td>
-              <td>2300.00</td>
-              <td>2026-01-10</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">সুমাইয়া আক্তার</td>
-              <td>3000.00</td>
-              <td>2026-01-10</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">নাঈম ইসলাম</td>
-              <td>3500.00</td>
-              <td>2026-01-10</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">মারিয়া ইসলাম</td>
-              <td>3000.00</td>
-              <td>2026-01-10</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">মেহেদী হাসান</td>
-              <td>2500.00</td>
-              <td>2026-01-10</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">তানজিলা আক্তার</td>
-              <td>3000.00</td>
-              <td>2026-01-10</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="text-bold-500">রাহাত হাসান</td>
-              <td>3000.00</td>
-              <td>2026-01-10</td>
-              <td>
-                <button type="button" className="btn btn-info">
-                  View
-                </button>
-              </td>
-            </tr>
+            {fees.map((fee) => (
+              <tr key={fee.id}>
+                <td className="text-bold-500">{fee.name}</td>
+                <td>{fee.fee_type_name}</td>
+                <td>{fee.fee_amount}</td>
+                <td>{fee.fee_collected_at}</td>
+                <td>
+                  <button
+                    onClick={printReceipt}
+                    disabled={!currentOrder.items.length}
+                    type="button"
+                    className="btn btn-info"
+                  >
+                    View
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </ManageTable>
       </PageWrapper>

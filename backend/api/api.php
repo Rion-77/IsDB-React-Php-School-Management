@@ -77,7 +77,16 @@ if ($_GET['endpoint']) {
     } elseif ($endpoint == "fee-type-delete" && $method == "DELETE") {
         $id = $_GET['id'];
         deleteFeeType($id);
-    } else {
+    } // Fee
+    elseif ($endpoint == "fees" && $method == "GET") {
+        getFee();
+    } elseif ($endpoint == "fee" && $method == "GET") {
+        getFeeById($_GET['id']);
+    } elseif ($endpoint == "fee-create" && $method == "POST") {
+        $data = json_decode(file_get_contents("php://input"), true);
+        addNewFee($data);
+    }
+    else {
         http_response_code(404);
     }
 } else {
