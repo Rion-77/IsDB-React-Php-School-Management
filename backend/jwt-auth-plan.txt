@@ -1,0 +1,8 @@
+JWT install
+1. add jwt via composer
+2. keep a secret key in the config file
+
+1. receive login information
+2. check if the email is in the database. email must be unique in the database.
+3. if the email is found. check for passoword.
+4. if password is valid generate a jwt token with users information as payload with the current timestamp and expiry time.

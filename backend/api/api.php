@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // Database connection
 require_once "../config/db.php";
 // Image upload helper
-require_once "../helpers/img-upload-helper.php";
+// require_once "../helpers/img-upload-helper.php";
 // All models 
 foreach (glob("*-api.php") as $apifile) {
     require_once $apifile;
@@ -22,13 +22,23 @@ foreach (glob("../model/*.class.php") as $modalfile) {
     require_once $modalfile;
 }
 
+// All helpers 
+foreach (glob("../helpers/*-helper.php") as $helper) {
+    require_once $helper;
+}
+
 // Endpoints
 if ($_GET['endpoint']) {
     $endpoint = $_GET['endpoint'];
     $method = $_SERVER['REQUEST_METHOD'];
 
+    if ($endpoint == "login" && $method == "POST") {
+        $data = json_decode(file_get_contents("php://input"), true);
+        // print_r($data);
+        checkLogin($data);
+    }
     // Student API's
-    if ($endpoint == "students" && $method == "GET") {
+    elseif ($endpoint == "students" && $method == "GET") {
         getStudents();
     } elseif ($endpoint == "student-create" && $method == "POST") {
         // $data = json_decode(file_get_contents("php://input"), true);
@@ -85,8 +95,7 @@ if ($_GET['endpoint']) {
     } elseif ($endpoint == "fee-create" && $method == "POST") {
         $data = json_decode(file_get_contents("php://input"), true);
         addNewFee($data);
-    }
-    else {
+    } else {
         http_response_code(404);
     }
 } else {
