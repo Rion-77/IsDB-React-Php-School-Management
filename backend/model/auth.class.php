@@ -11,8 +11,9 @@ class Authentication
             if ($user) {
                 if (password_verify($password, $user['password'])) {
                     http_response_code(200);
+                    unset($user['password']); // Remove password from the user data before returning
                     return [
-                        "token" => generateJWT($user, 60),
+                        "token" => generateJWT($user, 3600),
                         "user" => $user
                     ];
                 } else {

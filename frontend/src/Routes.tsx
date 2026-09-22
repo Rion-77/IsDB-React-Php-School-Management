@@ -4,7 +4,7 @@ import { createBrowserRouter } from "react-router";
 import App from "./App.tsx";
 import Dashboard from "./views/pages/Dashboard.tsx";
 import Page404 from "./views/pages/Page404.tsx";
-import Login from "./views/pages/Login.tsx";
+import Login from "./views/pages/auth/Login.tsx";
 // User
 import UserCreate from "./views/pages/user/UserCreate.tsx";
 import UserManage from "./views/pages/user/UserManage.tsx";
@@ -54,16 +54,19 @@ import FeeTypeManage from "./views/pages/fee-type/FeeTypeManage.tsx";
 import FeeTypeCreate from "./views/pages/fee-type/FeeTypeCreate.tsx";
 import FeeTypeEdit from "./views/pages/fee-type/FeeTypeEdit.tsx";
 import StudentDetails from "./views/pages/student/StudentDetails.tsx";
+import { loggedIn, needToLogin } from "./utils/auth.ts";
 
 
 export const routes = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+    loader: loggedIn
   },
   {
     path: "/",
     element: <App />,
+    loader: needToLogin,
     //prettier-ignore
     children: [
       {path: "/",element: <Dashboard />,},

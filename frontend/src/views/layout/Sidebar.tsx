@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router";
+
 import { Link } from "react-router";
 import SidebarLink from "../../components/SidebarLink";
-import logo from "../../assets/img/logo.png"
+import logo from "../../assets/img/logo.png";
 
 const sidebarUserStyles = {
   padding: "16px 32px",
@@ -8,18 +10,21 @@ const sidebarUserStyles = {
 };
 
 const Sidebar = () => {
+  
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("bearer_token");
+    navigate("/login");
+  };
+
   return (
     <div id="sidebar">
       <div className="sidebar-wrapper active">
         <div className="sidebar-header position-relative">
           <div className="d-flex flex-column justify-content-between align-items-start gap-3">
             <div className="logo">
-             <Link to="/">
-                <img
-                  src={logo}
-                  alt="Logo"
-                  style={{width: "170px", height: "auto"}}
-                />
+              <Link to="/">
+                <img src={logo} alt="Logo" style={{ width: "170px", height: "auto" }} />
               </Link>
             </div>
             <div className="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -117,7 +122,8 @@ const Sidebar = () => {
           </div>
           <div className="name ms-2">
             <h3 className="fs-6 mb-0">Shahed Ahmed</h3>
-            <Link to="/login">Logout</Link>
+            {/* Logout */}
+            <button className="btn btn-link text-decoration-none p-0" onClick={handleLogout}>Logout</button>
           </div>
         </div>
       </div>

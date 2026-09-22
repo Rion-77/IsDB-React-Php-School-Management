@@ -17,7 +17,7 @@ const StudentDetails = () => {
     api
       .get(`student-details?id=${studentId}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setStudent(res.data);
       })
       .catch((err) => {
